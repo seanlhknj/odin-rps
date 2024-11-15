@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP - RPS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <script>
+        function getComputerChoice()
+        {
+            let choice = (Math.floor(3 * Math.random()));
+            if (choice == 0) {
+                return "rock";
+            }
+            if (choice == 1) {
+                return "paper";
+            }
+            if (choice == 2) {
+                return "scissors";
+            }
+        }
+
+        function getHumanChoice()
+        {
+            let valid = false;
+            let choice;
+            while(!valid)
+            {
+                choice = prompt("Rock, paper, scissors!").toLowerCase();
+                if (choice === "rock" || choice === "paper" || choice === "scissors") {
+                    valid = true;
+                }
+                else {
+                    alert("Invalid choice! Do better.");
+                }
+            }
+            return choice;
+        }
+
+        let humanScore = 0;
+        let computerScore = 0;
+        
+        function playRound(humanChoice, computerChoice)
+        {
+            if (humanChoice === computerChoice) {
+                alert(`You both chose ${humanChoice}!`);
+            }
+
+            else if (humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper") {
+                alert(`You win! ${humanChoice} beats ${computerChoice}!`);
+                humanScore++;
+            }
+
+            else if (humanChoice === "rock" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "scissors" || humanChoice === "scissors" && computerChoice === "rock") {
+                alert(`You lose! ${computerChoice} beats ${humanChoice}!`);
+                computerScore++;
+            }
+        }
+
+        function playGame()
+        {
+            let humanChoice = getHumanChoice();
+            let computerChoice = getComputerChoice();
+            playRound(humanChoice, computerChoice);
+        }
+
+        for (let i = 0; i < 5; i++)
+        {
+            playGame();
+        }
+
+    </script>
+    
+</body>
+</html>
